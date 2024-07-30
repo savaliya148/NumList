@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+
+    <t t-name="numbers_for_list.add_number" t-inherit="web.ListRenderer.Rows"
+        t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-foreach='list.records']" position="before">
+            <t t-set="number" t-value="list.offset + 1" />
+        </xpath>
+        <xpath expr="//t[@t-call='{{ constructor.recordRowTemplate }}']" position="after">
+            <t t-set="number" t-value="number + 1" />
+        </xpath>
+    </t>
+
+    <t t-name="numbers_for_list.listrenderer.recordrownumber"
+        t-inherit="web.ListRenderer.RecordRow"
+        t-inherit-mode="extension"
+        owl="1">
+        <xpath expr="//tr/td[@t-if='hasSelectors']" position="before">
+            <td >
+                <span t-esc="number" />
+            </td>
+        </xpath>
+    </t>
+</template>
